@@ -6,12 +6,6 @@
   "trailingSlash": true,
   "cleanUrls": false,
   "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.hiddenintentionsinllms.org" }],
-      "destination": "https://hiddenintentionsinllms.org/:path*",
-      "permanent": true
-    },
     { "source": "/index.html", "destination": "/", "permanent": true }
   ],
   "headers": [
