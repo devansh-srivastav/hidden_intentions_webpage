@@ -12,7 +12,7 @@ ui:
   translation_note: "この翻訳は自動で作成されたもので、誤りを含む可能性があります。"   # shown while draft: true
   full_page: "英語の完全版ページへ"
   abstract: "概要（翻訳）"
-  plain: "わかりやすく言うと"
+  plain: "なぜ重要なのか"
   more: "結果の詳細"
   citation: "引用"
   copy: "BibTeX をコピー"

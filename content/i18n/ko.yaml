@@ -12,7 +12,7 @@ ui:
   translation_note: "이 번역은 자동으로 생성되었으며 오류가 있을 수 있습니다."   # shown while draft: true
   full_page: "영어 전체 페이지 보기"
   abstract: "초록 (번역)"
-  plain: "쉽게 풀어 쓰면"
+  plain: "왜 중요한가"
   more: "결과 자세히 보기"
   citation: "인용"
   copy: "BibTeX 복사"

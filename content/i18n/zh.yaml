@@ -13,7 +13,7 @@ ui:
   translation_note: "本译文为自动翻译，可能存在错误。"   # shown while draft: true
   full_page: "查看完整英文页面"
   abstract: "摘要（译文）"
-  plain: "通俗解读"
+  plain: "为何重要"
   more: "深入了解"
   citation: "引用"
   copy: "复制 BibTeX"

@@ -12,7 +12,7 @@ ui:
   translation_note: "Die Übersetzung wurde automatisch erstellt und kann Fehler enthalten."   # shown while draft: true
   full_page: "Zur vollständigen englischen Seite"
   abstract: "Abstract (Übersetzung)"
-  plain: "Einfach erklärt"
+  plain: "Warum das wichtig ist"
   more: "Ergebnisse im Detail"
   citation: "Zitieren"
   copy: "BibTeX kopieren"

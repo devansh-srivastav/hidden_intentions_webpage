@@ -12,7 +12,7 @@ ui:
   translation_note: "Bu çeviri otomatik olarak oluşturulmuştur ve hatalar içerebilir."   # shown while draft: true
   full_page: "Tam İngilizce sayfaya git"
   abstract: "Özet (çeviri)"
-  plain: "Sade bir dille"
+  plain: "Bu neden önemli"
   more: "Ayrıntılı sonuçlar"
   citation: "Atıf"
   copy: "BibTeX'i kopyala"
