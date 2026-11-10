@@ -1,0 +1,54 @@
+---
+import { paper, authors, authorUrl, authorLinks, venueLine, paperLinks } from '../lib/data';
+interface Props { tldr: string }
+const { tldr } = Astro.props;
+
+// Small monochrome glyphs for the profile menu (label text is always shown too).
+const glyph: Record<string, string> = {
+  homepage: 'M2 7.5 8 2.5l6 5V14H10v-4H6v4H2z',
+  scholar: 'M8 2 1 6l7 4 5.5-3.1V11h1.5V6zM4 9.3V12c1.1 1.2 2.4 1.8 4 1.8s2.9-.6 4-1.8V9.3L8 11.6z',
+  orcid: 'M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM5.6 4.3a.7.7 0 1 1 0 1.4.7.7 0 0 1 0-1.4zM5 6.6h1.2V12H5zm2.2 0h2.4c1.7 0 2.9 1.2 2.9 2.7S11.3 12 9.6 12H7.2zm1.2 1.1v3.2h1.1c1 0 1.7-.6 1.7-1.6s-.7-1.6-1.7-1.6z',
+};
+---
+<header class="hero" id="top">
+  <h1 lang="en" dir="ltr">{paper.title}</h1>
+
+  <ul class="authors" aria-label="Authors" lang="en">
+    {authors.map((a) => (
+      <li class="author">
+        {authorLinks(a).length === 0 && <a href={authorUrl(a)}>{a.name}</a>}
+        {authorLinks(a).length > 0 && (
+          <details class="author-menu">
+            <summary title={`Profiles of ${a.name}`}>
+              <span class="author-name">{a.name}</span>
+              <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            </summary>
+            <ul>
+              {authorLinks(a).map((l: any) => (
+                <li>
+                  <a href={l.url}>
+                    {glyph[l.type] && <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d={glyph[l.type]} fill="currentColor" /></svg>}
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        )}
+      </li>
+    ))}
+  </ul>
+  <p class="affiliation">{authors[0].affiliation}, Saarbrücken, Germany</p>
+  <p class="venue">
+    <span>{venueLine}</span>
+    <span class="sep" aria-hidden="true"> · </span><span>{paper.venue.location}</span>
+  </p>
+
+  <nav class="paper-links" aria-label="Paper links" lang="en">
+    <ul>
+      {paperLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+    </ul>
+  </nav>
+
+  <p class="tldr" id="tldr">{tldr}</p>
+</header>

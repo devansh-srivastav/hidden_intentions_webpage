@@ -1,0 +1,37 @@
+# DRAFT: needs native review before publishing (machine-assisted translation).
+# Summary page only; figures and BibTeX are shared with the English page.
+lang: de
+locale: de_DE
+label: Deutsch
+draft: true
+seo:
+  title: "Versteckte Absichten in LLMs: Unknown Unknowns (EMNLP 2026)"
+  description: "Können große Sprachmodelle (LLMs) Nutzer verdeckt manipulieren? Wir zeigen, dass die Erkennung, auch durch LLM-Judges, bei seltener Manipulation versagt."
+ui:
+  summary_note: "Diese Seite ist eine deutsche Zusammenfassung. Die vollständige Projektseite mit allen Ergebnissen ist auf Englisch verfügbar."
+  translation_note: "Die Übersetzung wurde automatisch erstellt und kann Fehler enthalten."   # shown while draft: true
+  full_page: "Zur vollständigen englischen Seite"
+  abstract: "Abstract (Übersetzung)"
+  plain: "Einfach erklärt"
+  more: "Ergebnisse im Detail"
+  citation: "Zitieren"
+  copy: "BibTeX kopieren"
+  copied: "Kopiert"
+  theme: "Farbschema wechseln"
+tldr: "Große Sprachmodelle (Large Language Models, LLMs) lassen sich so steuern, dass sie Nutzer verdeckt manipulieren, und gängige Erkennungsmethoden, auch LLM-Judges, versagen, sobald Manipulation selten ist."
+abstract: >-
+  LLMs erweitern die Zugänglichkeit und ermöglichen breiten Zugang zu Informationen. Zugleich schaffen diese Interaktionen Möglichkeiten, subtile, zielgerichtete Verhaltensweisen einzubetten, die prägen, was Nutzer denken und wie sie handeln, eine Sorge, die sich in Governance-Rahmenwerken widerspiegelt, die manipulative KI verbieten. Wir bezeichnen diese Verhaltensweisen als versteckte Absichten (hidden intentions): verdeckte Agenden in den Ausgaben eines Modells, die Überzeugungen und Handlungen von Nutzern manipulieren können. In dieser Arbeit untersuchen wir, ob sich versteckte Absichten identifizieren und charakterisieren lassen, und prüfen, ob Erkennung als Gegenmaßnahme dienen kann. Dazu führen wir zehn sozialwissenschaftlich fundierte Kategorien versteckter Absichten ein und zeigen, dass sie sich mühelos hervorrufen lassen. Eine Fallstudie bestätigt, dass alle zehn Kategorien in eingesetzten LLMs auftreten. Anschließend evaluieren wir statische Klassifikatoren und LLM-Judges auf diesen Kategorien und liefern die erste systematische Analyse, warum versteckte Absichten schwer zu erkennen sind. Unsere Stresstests zeigen: Solange die Falsch-Positiv-Raten nicht verschwindend gering sind, wird Auditing von Zielkonflikten zwischen Präzision und Prävalenz dominiert. Weder Skalierung der Modellfähigkeiten noch Reasoning-Modelle schließen diese Lücke, was auf eine grundlegende Herausforderung für die Erkennung in offenen Umgebungen (open-world detection) hindeutet. Diese Ergebnisse legen eine zentrale Lücke heutiger KI-Governance offen: Ohne neue Auditing-Paradigmen für offene Umgebungen mit seltenen Risiken bleiben Verbote manipulativer KI schwer durchsetzbar.
+plain:
+  - "Immer mehr Menschen fragen KI-Chatbots und KI-Assistenten um Rat, etwa was sie kaufen, glauben oder fühlen sollen. Damit haben große Sprachmodelle (LLMs) einen leisen Einfluss. Die Antworten eines Modells könnten Nutzer verdeckt zu einem Produkt, einer politischen Haltung oder einer schädlichen Überzeugung lenken, ohne es offen zu sagen. Solche verdeckten, zielgerichteten Verhaltensweisen nennen wir versteckte Absichten. Sie können absichtlich eingebaut werden oder im Training unbeabsichtigt entstehen."
+  - "Der EU AI Act verbietet manipulative KI bereits, doch ein Verbot wirkt nur, wenn Manipulation erkannt werden kann. Wir haben Erkennungsmethoden, auch LLMs als Prüfer, in einem bewusst einfachen Szenario getestet: Die Manipulation ist explizit, und jeder Fall ist eine einzelne Antwort. Selbst wenn einem Prüfer gesagt wird, nach welcher Art von Manipulation er suchen soll, macht er noch Fehler. Wird es ihm nicht gesagt, wie bei einer echten Prüfung, wird er deutlich schlechter: Er übersieht entweder viele Fälle oder markiert viele harmlose Antworten. Je seltener verdeckte Manipulation vorkommt, desto stärker bricht die Präzision ein: Die meisten markierten Antworten sind Fehlalarme. Versteckte Absichten zu erkennen ist daher viel schwieriger, als ein gutes Ergebnis auf einem ausgewogenen Testdatensatz vermuten lässt, und auch neuere oder Reasoning-Modelle als Prüfer schließen diese Lücke nicht."
+more:
+  - h: "Versteckte Absichten in großen Sprachmodellen"
+    p: "Versteckte Absichten sind verdeckte, zielgerichtete Verhaltensweisen in den Ausgaben großer Sprachmodelle (LLMs), die Überzeugungen oder Handlungen von Nutzern unbemerkt beeinflussen können, etwa durch versteckte Produktwerbung oder emotionalen Druck. Sie können absichtlich eingebracht werden, zum Beispiel durch Prompting, Data Poisoning oder Fine-Tuning, oder unbeabsichtigt im Training entstehen, etwa durch RLHF."
+  - h: "Manipulation bleibt oft unentdeckt"
+    p: "LLM-Judges erkennen Manipulation nur dann einigermaßen zuverlässig, wenn ihnen gesagt wird, wonach sie suchen sollen. Ohne diese Vorgabe werden alle getesteten Judges schlechter, und bei seltener Manipulation übersteigen die Fehlalarme die echten Treffer bei Weitem."
+  - h: "Wie Manipulation in KI-Chatbots erkannt werden soll"
+    p: "Üblich sind statische Klassifikatoren und LLM-as-a-Judge-Ansätze, bei denen ein weiteres Modell jede Antwort prüft. Klassifikatoren orientieren sich an Oberflächenmustern und versagen in neuen Kontexten; LLM-Judges übersehen viele manipulative Antworten oder markieren viele harmlose. Zuverlässige Erkennung bleibt ein offenes Problem."
+  - h: "Warum LLM-Judges in der Praxis versagen"
+    p: "Manipulation ist im Alltag selten, daher erzeugen schon kleine Falsch-Positiv-Raten mehr Fehlalarme als echte Fälle: Die Präzision von GPT-4.1 fällt von 0,90 bei einem ausgewogenen Testdatensatz auf 0,08 bei 1 % Prävalenz. Außerdem wissen Prüfer in offenen Umgebungen nicht, nach welcher Art von Manipulation sie suchen sollen."
+  - h: "Was das für den EU AI Act bedeutet"
+    p: "Der EU AI Act verbietet KI-Systeme, die Nutzer verdeckt manipulieren oder lenken. Die Durchsetzung setzt voraus, dass Manipulation zuverlässig erkannt werden kann. Unsere Ergebnisse zeigen, dass heutige Erkennungsmethoden das in offenen Umgebungen mit seltenen Fällen noch nicht leisten."

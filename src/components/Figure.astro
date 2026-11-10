@@ -1,0 +1,42 @@
+---
+// A captioned figure: AVIF/WebP with PNG fallback, explicit size, lazy unless `eager`.
+// Clicking opens the full-resolution image (in a dialog when JS is available).
+// With `darkFile`, a second version is shown in dark mode (system setting or theme toggle);
+// it is lazy-loaded, so readers in light mode never download it.
+// `transparent` drops the white mat, for images with a transparent background.
+import { Picture, getImage } from 'astro:assets';
+
+// size: 'hero' sits beside the title block, 'column' (default) spans the main column
+interface Props { file: string; darkFile?: string; transparent?: boolean; alt: string; caption: string; eager?: boolean; size?: 'hero' | 'column'; id?: string }
+const { file, darkFile, transparent = false, alt, caption, eager = false, size = 'column', id } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/figures/*.png', { eager: true });
+// Files may carry a content hash (name.<hash>.png); look them up by their stem.
+const get = (f: string) => {
+  const key = Object.keys(images).find((k) => {
+    const base = k.split('/').pop()!.replace(/\.png$/, '');
+    return base === f || base.replace(/\.[0-9a-f]{8}$/, '') === f;
+  });
+  const img = key ? images[key]?.default : undefined;
+  if (!img) throw new Error(`Figure not found: ${f}`);
+  return img;
+};
+const src = get(file);
+const dark = darkFile ? get(darkFile) : undefined;
+const full = await getImage({ src, format: 'webp', width: Math.min(src.width, 2400) });
+const fullDark = dark ? await getImage({ src: dark, format: 'webp', width: Math.min(dark.width, 2400) }) : undefined;
+const sizes = { hero: '(min-width: 1100px) 640px, 100vw', column: '(min-width: 1100px) 900px, 100vw' }[size];
+const widths = (img: ImageMetadata) => [480, 800, 1200, 1600, 2000].filter((w) => w <= img.width);
+---
+<figure class:list={['figure', `figure-${size}`, { 'figure-transparent': transparent }]} id={id}>
+  <a href={full.src} data-zoom aria-label={`Open full-size image: ${alt}`} class:list={{ 'theme-light-only': dark }}>
+    <Picture src={src} alt={alt} formats={['avif', 'webp']} widths={widths(src)} sizes={sizes}
+      loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} decoding={eager ? 'sync' : 'async'} />
+  </a>
+  {dark && fullDark && (
+    <a href={fullDark.src} data-zoom aria-label={`Open full-size image: ${alt}`} class="theme-dark-only">
+      <Picture src={dark} alt={alt} formats={['avif', 'webp']} widths={widths(dark)} sizes={sizes} loading="lazy" decoding="async" />
+    </a>
+  )}
+  <figcaption lang="en" dir="ltr">{caption}</figcaption>
+</figure>

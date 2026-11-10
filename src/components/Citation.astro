@@ -1,0 +1,13 @@
+---
+import { bibtex, apaCitation } from '../lib/data';
+interface Props { heading?: string; copy?: string; copied?: string; lang?: string }
+const { heading = 'Citation', copy = 'Copy BibTeX', copied = 'Copied' } = Astro.props;
+---
+<section aria-labelledby="citation">
+  <h2 id="citation">{heading}</h2>
+  <p class="apa" lang="en" dir="ltr">{apaCitation}</p>
+  <div class="bibtex" dir="ltr">
+    <button type="button" data-copy="bibtex-text" data-copied={copied} hidden>{copy}</button>
+    <pre lang="en"><code id="bibtex-text">{bibtex}</code></pre>
+  </div>
+</section>

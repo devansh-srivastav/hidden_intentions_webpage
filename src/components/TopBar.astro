@@ -1,0 +1,29 @@
+---
+import { menuLanguages } from '../lib/data';
+interface Props { current: string; themeLabel?: string }
+const { current, themeLabel = 'Switch colour scheme' } = Astro.props;
+const here = menuLanguages.find((l) => l.lang === current) ?? menuLanguages[0];
+---
+<header class="topbar">
+  {menuLanguages.length > 1 && (
+    <details class="lang-menu">
+      <summary aria-label={`Language: ${here.label}`} title="Language">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-2 2-2.8 4.2-2.8 6.5S6 12.5 8 14.5c2-2 2.8-4.2 2.8-6.5S10 3.5 8 1.5z"/></g></svg>
+        <span lang={here.lang}>{here.label}</span>
+        <svg class="caret" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      </summary>
+      <ul>
+        {menuLanguages.map((l) => (
+          <li>
+            {l.lang === current
+              ? <span aria-current="page" lang={l.lang}><bdi dir={l.dir}>{l.label}</bdi></span>
+              : <a href={l.path} hreflang={l.hreflang} lang={l.lang}><bdi dir={l.dir}>{l.label}</bdi></a>}
+          </li>
+        ))}
+      </ul>
+    </details>
+  )}
+  <button type="button" class="theme" data-theme-toggle hidden aria-label={themeLabel} title={themeLabel}>
+    <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg>
+  </button>
+</header>

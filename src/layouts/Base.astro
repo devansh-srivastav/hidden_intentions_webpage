@@ -1,0 +1,128 @@
+---
+import '../styles/global.css';
+import { paper, SITE, abs, scholarTags, languages } from '../lib/data';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: string;            // html lang
+  path: string;            // e.g. "/" or "/de/"
+  locale?: string;
+  noindex?: boolean;       // draft translations
+  jsonld?: any[];
+  scholar?: boolean;       // emit citation_* tags (English page only)
+  isDraftTranslation?: boolean;
+  dir?: 'ltr' | 'rtl';
+}
+const { title, description, lang, path, locale = 'en_US', noindex = false, jsonld = [], scholar = false, isDraftTranslation = false, dir = 'ltr' } = Astro.props;
+const url = `${SITE}${path}`;
+const ogImage = abs('/og-image.png');
+// hreflang only when this page itself is part of the published set
+const inSet = languages.some((l) => l.path === path);
+---
+<!doctype html>
+<html lang={lang} dir={dir}>
+  <head>
+    {isDraftTranslation && <Fragment set:html="<!-- DRAFT: machine-assisted translation, needs native review before publishing -->" />}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={url} />
+    <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large'} />
+    {inSet && languages.length > 1 && languages.map((l) => <link rel="alternate" hreflang={l.hreflang} href={`${SITE}${l.path}`} />)}
+    {inSet && languages.length > 1 && <link rel="alternate" hreflang="x-default" href={`${SITE}/`} />}
+    <meta name="keywords" content={paper.seo.keywords} />
+    <meta name="theme-color" content="#FAF8F3" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1A1916" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
+    {paper.site.google_site_verification && <meta name="google-site-verification" content={paper.site.google_site_verification} />}
+
+    <!-- Open Graph / Twitter (also read by LinkedIn, Bluesky, Slack) -->
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Hidden Intentions in LLMs" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={url} />
+    <meta property="og:locale" content={locale} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`Title card for the paper ${paper.title}`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {scholar && scholarTags(url).map(([n, c]) => <meta name={n} content={c} />)}
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" href="/fonts/source-serif-4-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="sitemap" href="/sitemap.xml" />
+
+    {jsonld.filter(Boolean).map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
+
+    <!-- Theme: respects the system setting; the toggle stores an explicit choice. -->
+    <script is:inline>
+      try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <slot />
+    <script is:inline>
+      // Theme toggle
+      (function () {
+        var b = document.querySelector('[data-theme-toggle]');
+        if (!b) return;
+        b.hidden = false;
+        b.addEventListener('click', function () {
+          var root = document.documentElement;
+          var dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+          root.dataset.theme = dark ? 'light' : 'dark';
+          try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+        });
+      })();
+      // Copy BibTeX
+      document.querySelectorAll('[data-copy]').forEach(function (btn) {
+        btn.hidden = false;
+        btn.addEventListener('click', function () {
+          var src = document.getElementById(btn.getAttribute('data-copy'));
+          navigator.clipboard.writeText(src.textContent).then(function () {
+            var old = btn.textContent; btn.textContent = btn.getAttribute('data-copied') || 'Copied';
+            setTimeout(function () { btn.textContent = old; }, 1600);
+          });
+        });
+      });
+      // Figure zoom: links still open the full image without JS; with JS they open a dialog.
+      (function () {
+        var links = document.querySelectorAll('a[data-zoom]');
+        if (!links.length || !window.HTMLDialogElement) return;
+        var d = document.createElement('dialog'); d.id = 'zoom'; d.setAttribute('aria-label', 'Full-size figure');
+        var img = document.createElement('img'); d.appendChild(img); document.body.appendChild(d);
+        links.forEach(function (a) {
+          a.addEventListener('click', function (e) {
+            e.preventDefault();
+            img.src = a.href; img.alt = a.querySelector('img').alt;
+            d.showModal();
+          });
+        });
+        d.addEventListener('click', function () { d.close(); });
+      })();
+      // Author and language menus: Escape closes an open menu and returns focus to its toggle
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        document.querySelectorAll('details.author-menu[open], details.lang-menu[open]').forEach(function (m) {
+          m.removeAttribute('open'); m.querySelector('summary').focus();
+        });
+      });
+      document.addEventListener('click', function (e) {
+        document.querySelectorAll('details.author-menu[open], details.lang-menu[open]').forEach(function (m) {
+          if (!m.contains(e.target)) m.removeAttribute('open');
+        });
+      });
+    </script>
+  </body>
+</html>

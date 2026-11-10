@@ -1,0 +1,62 @@
+---
+// Translated summary pages (/de/, /zh/, ...). Figures and BibTeX are shared with the English page.
+// Draft translations are built for review but marked noindex and kept out of hreflang/sitemap.
+import Base from '../../layouts/Base.astro';
+import TopBar from '../../components/TopBar.astro';
+import Hero from '../../components/Hero.astro';
+import Figure from '../../components/Figure.astro';
+import Citation from '../../components/Citation.astro';
+import Footer from '../../components/Footer.astro';
+import { paper, translations, published } from '../../lib/data';
+
+export function getStaticPaths() {
+  return translations.map((t) => ({ params: { lang: t.lang }, props: { t } }));
+}
+const { t } = Astro.props;
+const isPublished = published(t);
+---
+<Base
+  title={t.seo.title}
+  description={t.seo.description}
+  lang={t.hreflang || t.lang}
+  locale={t.locale}
+  dir={t.dir || 'ltr'}
+  path={`/${t.lang}/`}
+  noindex={!isPublished}
+  isDraftTranslation={t.draft}
+>
+  <TopBar current={t.lang} themeLabel={t.ui.theme} />
+  <main id="main" class="shell">
+    <div class="intro">
+    <Hero tldr={t.tldr} />
+
+    <Figure file="hidden-intentions-llm-conceptual-model" darkFile="hidden-intentions-llm-conceptual-model-dark" transparent alt={paper.teaser.alt} caption={paper.teaser.caption} eager size="hero" />
+    </div>
+    <p class="summary-note">{t.ui.summary_note} {!isPublished && t.ui.translation_note} <a href="/" hreflang="en" lang="en">{t.ui.full_page}</a>.</p>
+
+    <article class="article article-solo">
+    <section aria-labelledby="abstract">
+      <h2 id="abstract">{t.ui.abstract}</h2>
+      <p>{t.abstract}</p>
+    </section>
+
+    <section aria-labelledby="plain">
+      <h2 id="plain">{t.ui.plain}</h2>
+      {t.plain.map((p: string) => <p>{p}</p>)}
+    </section>
+
+    <section aria-labelledby="more">
+      <h2 id="more">{t.ui.more}</h2>
+      {t.more.map((m: any, i: number) => (
+        <>
+          <h3 id={`more-${i + 1}`}>{m.h}</h3>
+          <p>{m.p}</p>
+        </>
+      ))}
+    </section>
+
+    <Citation heading={t.ui.citation} copy={t.ui.copy} copied={t.ui.copied} />
+    </article>
+  </main>
+  <Footer />
+</Base>

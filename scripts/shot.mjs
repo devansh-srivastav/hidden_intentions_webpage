@@ -1,0 +1,11 @@
+import puppeteer from 'puppeteer-core';
+const [,, url, out, w, h, scheme] = process.argv;
+const b = await puppeteer.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', headless: true });
+const p = await b.newPage();
+await p.setViewport({ width: +w, height: +h, deviceScaleFactor: 1, isMobile: +w < 600, hasTouch: +w < 600 });
+await p.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: scheme || 'light' }]);
+await p.goto(url, { waitUntil: 'networkidle0' });
+const over = await p.evaluate(() => { const W = document.documentElement.clientWidth; const r=[]; document.querySelectorAll('body *').forEach(e => { const b = e.getBoundingClientRect(); if (b.right > W + 1 && b.width>0) r.push(`${e.tagName}.${e.className} right=${Math.round(b.right)}`); }); return { W, scrollW: document.documentElement.scrollWidth, r: r.slice(0, 10) }; });
+console.log(JSON.stringify(over));
+await p.screenshot({ path: out, fullPage: false });
+await b.close();

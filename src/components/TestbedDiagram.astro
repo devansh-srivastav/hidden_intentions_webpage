@@ -1,0 +1,18 @@
+---
+// The testbed pipeline as HTML: prompts -> lab model -> two kinds of response.
+interface Props { d: any }
+const { d } = Astro.props;
+---
+<figure class="figure testbed">
+  <div class="flow" role="img" aria-label={`${d.prompts.title}: ${d.prompts.text}. ${d.model.title}: ${d.model.text}. ${d.trigger.title}: ${d.trigger.text}. ${d.other.title}: ${d.other.text}.`}>
+    <div class="node"><strong>{d.prompts.title}</strong><span>{d.prompts.text}</span></div>
+    <span class="arrow" aria-hidden="true"></span>
+    <div class="node"><strong>{d.model.title}</strong><span>{d.model.text}</span></div>
+    <span class="arrow" aria-hidden="true"></span>
+    <div class="outcomes">
+      <div class="node node-b"><strong>{d.trigger.title}</strong><span>{d.trigger.text}</span></div>
+      <div class="node node-a"><strong>{d.other.title}</strong><span>{d.other.text}</span></div>
+    </div>
+  </div>
+  <figcaption>{d.caption}</figcaption>
+</figure>

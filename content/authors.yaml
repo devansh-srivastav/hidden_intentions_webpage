@@ -1,0 +1,40 @@
+# One entry per author, in paper order. This single list generates the hero author menus,
+# the citation_author tags, the JSON-LD author[] (incl. sameAs) and the BibTeX author list.
+#
+# links: add or remove entries freely. Supported types (shown in this fixed order):
+#   homepage, scholar, semantic-scholar, orcid, github, linkedin, x, bluesky
+# The author's name links to their homepage, or to Scholar if there is no homepage.
+# IDs below were checked against ORCID's public API and the Scholar profile names.
+
+- name: Devansh Srivastav
+  given: Devansh
+  family: Srivastav
+  alternateNames: []
+  affiliation: CISPA Helmholtz Center for Information Security
+  homepage: https://devanshsrivastav.com/
+  links:
+    - { label: "Homepage", url: "https://devanshsrivastav.com/", type: homepage }
+    - { label: "Google Scholar", url: "https://scholar.google.com/citations?user=4C3CZHUAAAAJ", type: scholar }
+    - { label: "ORCID", url: "https://orcid.org/0000-0002-8858-7402", type: orcid }
+
+- name: David Pape
+  given: David
+  family: Pape
+  alternateNames: []
+  affiliation: CISPA Helmholtz Center for Information Security
+  homepage: https://david-pape.github.io/
+  links:
+    - { label: "Homepage", url: "https://david-pape.github.io/", type: homepage }
+    - { label: "Google Scholar", url: "https://scholar.google.com/citations?user=H6qubdwAAAAJ", type: scholar }
+    - { label: "ORCID", url: "https://orcid.org/0009-0003-0537-7675", type: orcid }
+
+- name: Lea Schönherr
+  given: Lea
+  family: Schönherr
+  alternateNames: ["Lea Schoenherr"]
+  affiliation: CISPA Helmholtz Center for Information Security
+  homepage: https://leaschoenherr.me/
+  links:
+    - { label: "Homepage", url: "https://leaschoenherr.me/", type: homepage }
+    - { label: "Google Scholar", url: "https://scholar.google.com/citations?user=DtLfiGoAAAAJ", type: scholar }
+    - { label: "ORCID", url: "https://orcid.org/0000-0003-3779-7781", type: orcid }

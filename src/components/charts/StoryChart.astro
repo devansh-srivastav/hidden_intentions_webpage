@@ -1,0 +1,90 @@
+---
+// One results chart as a captioned figure: legend (for two-series charts), the chart,
+// a caption, and the numbers as a real table behind a disclosure.
+import PrecisionCurve from './PrecisionCurve.astro';
+interface Props { chart: any }
+const { chart: c } = Astro.props;
+const pct = (v: number) => `${Math.round(v * 100)}%`;
+const twoSeries = c.kind === 'static';
+const total = c.counts ? c.counts.real + c.counts.false : 0;
+---
+<figure class="figure chart-figure">
+  <p class="chart-title">{c.title}</p>
+  {twoSeries && (
+    <ul class="legend" aria-label="Legend">
+      <li><span class="key key-a" aria-hidden="true"></span>{c.a_label}</li>
+      <li><span class="key key-b" aria-hidden="true"></span>{c.b_label}</li>
+    </ul>
+  )}
+
+  {c.kind === 'judges' && (
+    <ul class="legend" aria-label="Legend">
+      <li><span class="key key-b" aria-hidden="true"></span>Bar: {c.b_label.toLowerCase()}</li>
+      <li><span class="key-tick" aria-hidden="true"></span>Tick: {c.a_label.toLowerCase()}</li>
+    </ul>
+  )}
+  <div class="chart-scroll">
+    {c.kind === 'prevalence' && <PrecisionCurve title={c.title} highlight={c.highlight} others={c.others} />}
+  </div>
+
+  {c.kind === 'judges' && (
+    <div class="butterfly" role="img" aria-label={`${c.title}: ${c.rows.map((r: any) => `${r.label} flags ${pct(r.agn_fpr)} of benign outputs (${pct(r.spec_fpr)} when told the category) and misses ${pct(r.agn_fnr)} of hidden intentions (${pct(r.spec_fnr)} when told)`).join('; ')}`}>
+      <div class="bf-head">
+        <span class="bf-side bf-left">← Benign outputs flagged</span>
+        <span></span>
+        <span class="bf-side">Hidden intentions missed →</span>
+      </div>
+      {[...c.rows].sort((p: any, q: any) => (q.agn_fpr - q.agn_fnr) - (p.agn_fpr - p.agn_fnr)).map((r: any) => (
+        <div class:list={['bf-row', { hot: r.highlight }]}>
+          <span class="bf-label">{r.label}</span>
+          <span class="bf-cell bf-left" title={`${r.label} flags ${pct(r.agn_fpr)} of benign outputs when only asked if any is present (${pct(r.spec_fpr)} when told the category)`}>
+            <span class="bf-value">{pct(r.agn_fpr)}</span>
+            <span class="bf-track"><span class="bf-fill" style={`width:${r.agn_fpr * 100}%`}></span><span class="bf-tick" style={`inset-inline-end:${r.spec_fpr * 100}%`}></span></span>
+          </span>
+          <span class="bf-cell" title={`${r.label} misses ${pct(r.agn_fnr)} of hidden intentions when only asked if any is present (${pct(r.spec_fnr)} when told the category)`}>
+            <span class="bf-track"><span class="bf-fill" style={`width:${r.agn_fnr * 100}%`}></span><span class="bf-tick" style={`inset-inline-start:${r.spec_fnr * 100}%`}></span></span>
+            <span class="bf-value">{pct(r.agn_fnr)}</span>
+          </span>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {c.kind === 'static' && (
+    <div class="pairs" role="img" aria-label={`${c.title}: ${c.rows.map((r: any) => `${r.label} ${pct(r.a)} vs ${pct(r.b)}`).join(', ')}`}>
+      {c.rows.map((r: any) => (
+        <div class="pair">
+          <span class="bar-label">{r.label}</span>
+          <div class="pair-bars">
+            <div class="bar-line" title={`${r.label}, ${c.a_label}: ${pct(r.a)} accuracy`}>
+              <span class="bar-track"><span class="bar-fill fill-a" style={`width:${r.a * 100}%`}></span></span>
+              <span class="bar-value">{pct(r.a)}</span>
+            </div>
+            <div class="bar-line" title={`${r.label}, ${c.b_label}: ${pct(r.b)} accuracy`}>
+              <span class="bar-track"><span class="bar-fill fill-b" style={`width:${r.b * 100}%`}></span></span>
+              <span class="bar-value">{pct(r.b)}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )}
+
+
+  {c.counts && (
+    <div class="counts">
+      <p class="chart-title">{c.counts.title}</p>
+      <div class="split" role="img" aria-label={`${c.counts.title}: ${c.counts.real} real, ${c.counts.false} false alarms, out of ${total.toLocaleString('en')} flags`}>
+        <span class="seg seg-a" style={`flex-basis:${(c.counts.real / total) * 100}%`} title={`${c.counts.real_label}: ${c.counts.real}`}>{c.counts.real}</span>
+        <span class="seg seg-b" style={`flex-basis:${(c.counts.false / total) * 100}%`} title={`${c.counts.false_label}: ${c.counts.false}`}>{c.counts.false.toLocaleString('en')}</span>
+      </div>
+      <ul class="legend">
+        <li><span class="key key-a" aria-hidden="true"></span>{c.counts.real_label}</li>
+        <li><span class="key key-b" aria-hidden="true"></span>{c.counts.false_label}</li>
+      </ul>
+    </div>
+  )}
+
+  <figcaption lang="en" dir="ltr">{c.caption}</figcaption>
+
+</figure>

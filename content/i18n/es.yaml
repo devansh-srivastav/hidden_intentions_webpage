@@ -1,0 +1,37 @@
+# DRAFT: needs native review before publishing (machine-assisted translation).
+# Summary page only; figures and BibTeX are shared with the English page.
+lang: es
+locale: es_ES
+label: Español
+draft: true
+seo:
+  title: "Intenciones ocultas en LLMs: Unknown Unknowns (EMNLP 2026)"
+  description: "¿Pueden los LLMs manipular a sus usuarios sin ser detectados? La detección, incluso con LLMs como jueces, falla cuando la manipulación es rara."
+ui:
+  summary_note: "Esta página es un resumen en español. La página completa del proyecto, con todos los resultados, está disponible en inglés."
+  translation_note: "Esta traducción se generó automáticamente y puede contener errores."   # shown while draft: true
+  full_page: "Ver la página completa en inglés"
+  abstract: "Resumen (traducción)"
+  plain: "En palabras sencillas"
+  more: "Resultados en detalle"
+  citation: "Citar"
+  copy: "Copiar BibTeX"
+  copied: "Copiado"
+  theme: "Cambiar tema"
+tldr: "Los grandes modelos de lenguaje (large language models, LLMs) pueden ser inducidos a manipular encubiertamente a sus usuarios, y los métodos de detección actuales, incluidos los LLMs que actúan como jueces, fallan cuando la manipulación se vuelve rara."
+abstract: >-
+  Los LLMs amplían la accesibilidad y ofrecen un acceso amplio a la información. Sin embargo, estas interacciones también crean oportunidades para incorporar comportamientos sutiles y orientados a objetivos que moldean lo que piensan los usuarios y cómo actúan, una preocupación reflejada en los marcos de gobernanza que prohíben la IA manipuladora. Llamamos a estos comportamientos intenciones ocultas (hidden intentions): agendas encubiertas presentes en las salidas de un modelo que pueden manipular las creencias y acciones de los usuarios. En este trabajo examinamos si las intenciones ocultas pueden identificarse y caracterizarse, y evaluamos si la detección puede servir como estrategia de mitigación. Para ello, introducimos diez categorías de intenciones ocultas fundamentadas en las ciencias sociales y mostramos que son trivialmente inducibles. Un estudio de caso confirma además que las diez categorías se manifiestan en LLMs desplegados. Después evaluamos clasificadores estáticos y LLMs jueces sobre estas categorías, y ofrecemos el primer análisis sistemático de por qué las intenciones ocultas son difíciles de detectar. Nuestras pruebas de estrés muestran que, a menos que las tasas de falsos positivos sean ínfimas, la auditoría está dominada por compromisos entre precisión y prevalencia. Ni el escalado de capacidades ni los modelos de razonamiento cierran esta brecha, lo que sugiere un desafío fundamental para la detección en mundo abierto (open-world detection). Estos hallazgos exponen una brecha central de la gobernanza actual de la IA: sin nuevos paradigmas de auditoría para riesgos de baja prevalencia en mundo abierto, las prohibiciones de la IA manipuladora siguen siendo difíciles de hacer cumplir.
+plain:
+  - "Cada vez más personas piden consejo a chatbots y asistentes de IA sobre qué comprar, qué creer o cómo sentirse. Eso da a los grandes modelos de lenguaje (LLMs) una influencia silenciosa. Las respuestas de un modelo podrían empujar de forma encubierta a los usuarios hacia un producto, una postura política o una creencia dañina, sin decirlo nunca. Llamamos a estos comportamientos encubiertos y orientados a objetivos intenciones ocultas. Pueden introducirse a propósito o surgir sin querer durante el entrenamiento."
+  - "La Ley de IA de la UE (EU AI Act) ya prohíbe la IA manipuladora, pero una prohibición solo funciona si la manipulación puede detectarse. Probamos los detectores, incluidos LLMs que actúan como jueces, en un escenario deliberadamente fácil: la manipulación es explícita y cada caso es una sola respuesta. Incluso cuando a un juez se le dice qué tipo de manipulación buscar, sigue cometiendo errores. Cuando no se le dice, como en una auditoría real, empeora claramente: pasa por alto muchos casos o marca muchas respuestas inofensivas. A medida que disminuye la prevalencia de la manipulación encubierta, la precisión se desploma: la mayoría de las respuestas marcadas son falsas alarmas. Detectar intenciones ocultas es, por tanto, mucho más difícil de lo que sugiere un buen resultado en un conjunto de prueba equilibrado, y usar modelos más nuevos o de razonamiento como detectores no cierra esta brecha."
+more:
+  - h: "Intenciones ocultas en los grandes modelos de lenguaje"
+    p: "Las intenciones ocultas son comportamientos encubiertos y orientados a objetivos en las salidas de los LLMs que pueden influir en las creencias o acciones de los usuarios sin que lo noten, por ejemplo promocionando discretamente un producto o ejerciendo presión emocional. Pueden introducirse mediante prompting, envenenamiento de datos (data poisoning) o fine-tuning, o surgir sin querer durante el entrenamiento, por ejemplo con RLHF."
+  - h: "La manipulación a menudo pasa desapercibida"
+    p: "Los LLMs jueces solo detectan la manipulación de forma razonablemente fiable cuando se les indica qué buscar. Sin esa indicación, todos los jueces evaluados empeoran, y cuando la manipulación es rara, las falsas alarmas superan con mucho a las detecciones reales."
+  - h: "Cómo detectar la manipulación en chatbots de IA"
+    p: "Los enfoques habituales son los clasificadores estáticos y el enfoque LLM-as-a-judge, en el que otro modelo revisa cada respuesta. Los clasificadores se basan en patrones superficiales y fallan en contextos nuevos; los LLMs jueces pasan por alto muchas respuestas manipuladoras o marcan muchas inofensivas. La detección fiable sigue siendo un problema abierto."
+  - h: "Por qué los LLMs jueces fallan en la práctica"
+    p: "La manipulación es rara en el uso cotidiano, así que incluso una tasa baja de falsos positivos produce más falsas alarmas que casos reales: la precisión de GPT-4.1 cae de 0,90 en un conjunto de prueba equilibrado a 0,08 con una prevalencia del 1 %. Además, en un mundo abierto el auditor no sabe qué tipo de manipulación buscar."
+  - h: "Qué significa esto para la Ley de IA de la UE"
+    p: "La Ley de IA de la UE prohíbe los sistemas de IA que manipulan o dirigen a los usuarios de forma encubierta. Hacer cumplir esa prohibición presupone que la manipulación puede detectarse de forma fiable. Nuestros resultados muestran que los métodos actuales aún no lo logran en entornos abiertos donde los casos son raros."

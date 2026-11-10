@@ -1,0 +1,117 @@
+---
+import Base from '../layouts/Base.astro';
+import TopBar from '../components/TopBar.astro';
+import Hero from '../components/Hero.astro';
+import Figure from '../components/Figure.astro';
+import Citation from '../components/Citation.astro';
+import Footer from '../components/Footer.astro';
+import StoryChart from '../components/charts/StoryChart.astro';
+import TestbedDiagram from '../components/TestbedDiagram.astro';
+import { paper } from '../lib/data';
+import { articleLd, codeLd, datasetLd } from '../lib/jsonld';
+
+const slug = (s: string) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+---
+<Base
+  title={paper.seo.title}
+  description={paper.seo.description}
+  lang="en"
+  path="/"
+  scholar
+  jsonld={[articleLd(), codeLd(), datasetLd()]}
+>
+  <TopBar current="en" />
+  <main id="main" class="shell">
+    <div class="intro">
+    <Hero tldr={paper.tldr} />
+
+    <Figure file="hidden-intentions-llm-conceptual-model" darkFile="hidden-intentions-llm-conceptual-model-dark" transparent alt={paper.teaser.alt} caption={paper.teaser.caption} eager size="hero" />
+    </div>
+
+    <article class="article">
+        <section aria-labelledby="abstract">
+          <h2 id="abstract">Abstract</h2>
+          <p>{paper.abstract}</p>
+        </section>
+
+        <section aria-labelledby="why-this-matters">
+          <h2 id="why-this-matters">{paper.plain_language.heading}</h2>
+          {paper.plain_language.paragraphs.map((p: string) => <p>{p}</p>)}
+        </section>
+
+        <section aria-labelledby="categories-of-hidden-intentions">
+          <h2 id="categories-of-hidden-intentions">{paper.categories.heading}</h2>
+          <p>{paper.categories.intro}</p>
+          <div class="categories">
+            {paper.categories.items.map((c: any) => (
+              <div class="category">
+                <h3 id={slug(c.name)}><span class="cid">{c.id}</span> {c.name}</h3>
+                <p>{c.text}</p>
+                <p class="grounding">Grounded in: {c.grounding}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section aria-labelledby="real-world-case-study">
+          <h2 id="real-world-case-study">{paper.case_study.heading}</h2>
+          {paper.case_study.paragraphs.map((p: string) => <p>{p}</p>)}
+          <div class="exchanges">
+            {paper.case_study.examples.map((e: any) => (
+              <figure class="exchange">
+                <figcaption><strong>{e.category}</strong> · {e.model}</figcaption>
+                <blockquote class="turn user"><p><span class="who">User</span> {e.prompt}</p></blockquote>
+                <blockquote class="turn model"><p><span class="who">Model</span> {e.response}</p></blockquote>
+                <p class="note">{e.note}</p>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        <section aria-labelledby="method-and-testbed">
+          <h2 id="method-and-testbed">{paper.method.heading}</h2>
+          {paper.method.paragraphs.slice(0, 1).map((p: string) => <p>{p}</p>)}
+          <TestbedDiagram d={paper.method.diagram} />
+          {paper.method.paragraphs.slice(1).map((p: string) => <p>{p}</p>)}
+        </section>
+
+        <section aria-labelledby="putting-detectors-to-the-test">
+          <h2 id="putting-detectors-to-the-test">{paper.story.heading}</h2>
+          <p class="lede">{paper.story.intro}</p>
+          {paper.story.steps.map((st: any, i: number) => (
+            <div class="step">
+              <h3 id={st.id}><span class="step-n">{i + 1}</span> {st.question}</h3>
+              {st.paragraphs.map((p: string) => <p>{p}</p>)}
+              {st.chart && <StoryChart chart={st.chart} />}
+            </div>
+          ))}
+        </section>
+
+        <section aria-labelledby="what-we-found">
+          <h2 id="what-we-found">{paper.findings.heading}</h2>
+          <ol class="findings">
+            {paper.findings.items.map((f: any) => <li><strong>{f.lead}</strong> {f.text}</li>)}
+          </ol>
+        </section>
+
+        <section aria-labelledby="implications-for-ai-safety-auditing-and-regulation">
+          <h2 id="implications-for-ai-safety-auditing-and-regulation">{paper.implications.heading}</h2>
+          {paper.implications.subsections.map((s: any) => (
+            <>
+              <h3 id={slug(s.heading)}>{s.heading}</h3>
+              {s.paragraphs.map((p: string) => <p>{p}</p>)}
+            </>
+          ))}
+        </section>
+
+        <Citation />
+
+        <section aria-labelledby="acknowledgements">
+          <h2 id="acknowledgements">Acknowledgements</h2>
+          <p class="acks">{paper.acknowledgements}</p>
+        </section>
+    </article>
+  </main>
+  <Footer />
+</Base>

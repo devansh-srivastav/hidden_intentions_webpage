@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import { paper } from '../lib/data';
+---
+<Base title="Page not found · Hidden Intentions in LLMs" description="This page does not exist. Go to the project page for the paper on hidden intentions in LLMs." lang="en" path="/404/" noindex>
+  <main id="main" class="notfound">
+    <h1>Page not found</h1>
+    <p>There is nothing at this address. The project page for <a href="/">{paper.title}</a> is the place to start.</p>
+  </main>
+</Base>

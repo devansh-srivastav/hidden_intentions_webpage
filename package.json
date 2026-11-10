@@ -1,0 +1,21 @@
+{
+  "name": "hidden-intentions-in-llms",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "shots": "node scripts/shot.mjs",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check:jsonld": "node scripts/check-jsonld.mjs dist",
+    "assets": "python3 scripts/make_assets.py"
+  },
+  "dependencies": {
+    "astro": "^7.4.0",
+    "sharp": "^0.35.5",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.14.0"
+  }
+}

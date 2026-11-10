@@ -1,0 +1,37 @@
+# DRAFT: needs native review before publishing (machine-assisted translation).
+# Summary page only; figures and BibTeX are shared with the English page.
+lang: tr
+locale: tr_TR
+label: Türkçe
+draft: true
+seo:
+  title: "LLM'lerde gizli niyetler: Unknown Unknowns (EMNLP 2026)"
+  description: "LLM'ler kullanıcıları fark edilmeden manipüle edebilir mi? Manipülasyon nadir olduğunda LLM hakemler dahil tespit yöntemleri başarısız oluyor."
+ui:
+  summary_note: "Bu sayfa Türkçe bir özettir. Tüm sonuçları içeren tam proje sayfası İngilizce olarak mevcuttur."
+  translation_note: "Bu çeviri otomatik olarak oluşturulmuştur ve hatalar içerebilir."   # shown while draft: true
+  full_page: "Tam İngilizce sayfaya git"
+  abstract: "Özet (çeviri)"
+  plain: "Sade bir dille"
+  more: "Ayrıntılı sonuçlar"
+  citation: "Atıf"
+  copy: "BibTeX'i kopyala"
+  copied: "Kopyalandı"
+  theme: "Renk temasını değiştir"
+tldr: "Büyük dil modelleri (large language models, LLM) kullanıcılarını gizlice manipüle edecek şekilde yönlendirilebilir; LLM hakemler dahil mevcut tespit yöntemleri ise manipülasyon nadirleştiğinde bunu güvenilir biçimde yakalayamaz."
+abstract: >-
+  LLM'ler erişilebilirliği artırır ve bilgiye geniş erişim sağlar. Ancak bu etkileşimler, kullanıcıların ne düşündüğünü ve nasıl davrandığını şekillendiren ince, amaca yönelik davranışların yerleştirilmesine de fırsat yaratır; bu endişe, manipülatif yapay zekâyı yasaklayan yönetişim çerçevelerine de yansımıştır. Bu davranışlara gizli niyetler (hidden intentions) diyoruz: bir modelin çıktılarına gömülü, kullanıcıların inançlarını ve eylemlerini manipüle edebilen örtük gündemler. Bu çalışmada gizli niyetlerin tanımlanıp nitelendirilebilir olup olmadığını inceliyor ve tespitin bir hafifletme stratejisi olarak işe yarayıp yaramayacağını değerlendiriyoruz. Bunun için sosyal bilimlere dayanan on gizli niyet kategorisi sunuyor ve bunların son derece kolay oluşturulabildiğini gösteriyoruz. Bir vaka çalışması, on kategorinin tamamının kullanımdaki LLM'lerde ortaya çıktığını doğruluyor. Ardından statik sınıflandırıcıları ve LLM hakemleri bu kategoriler üzerinde değerlendiriyor, gizli niyetlerin neden zor tespit edildiğine dair ilk sistematik analizi sunuyoruz. Stres testlerimiz, yanlış pozitif oranları son derece düşük olmadıkça denetimin kesinlik ile yaygınlık (prevalence) arasındaki ödünleşimler tarafından belirlendiğini gösteriyor. Ne model yeteneklerinin ölçeklenmesi ne de akıl yürütme modelleri bu açığı kapatıyor; bu da açık dünyada tespit (open-world detection) için temel bir zorluğa işaret ediyor. Bu bulgular, mevcut yapay zekâ yönetişimindeki temel bir boşluğu ortaya koyuyor: açık dünyadaki nadir riskler için yeni denetim paradigmaları olmadan, manipülatif yapay zekâya yönelik yasakları uygulamak zor olmaya devam edecek.
+plain:
+  - "Giderek daha fazla insan yapay zekâ sohbet robotlarına ve asistanlarına ne alacaklarını, neye inanacaklarını ve nasıl hissedeceklerini danışıyor. Bu da büyük dil modellerine (LLM) sessiz bir etki gücü veriyor. Bir modelin yanıtları, kullanıcıları hiç söylemeden ve fark ettirmeden bir ürüne, bir siyasi görüşe ya da zararlı bir inanca yönlendirebilir. Bu örtük, hedefe yönelik davranışlara gizli niyetler diyoruz. Bilerek eklenebilir ya da eğitim sırasında istemeden ortaya çıkabilirler."
+  - "AB Yapay Zekâ Yasası (EU AI Act) manipülatif yapay zekâyı zaten yasaklıyor, ancak bir yasak yalnızca manipülasyon tespit edilebildiğinde işe yarar. Hakem olarak kullanılan LLM'ler dahil tespit araçlarını bilerek kolay tutulmuş bir ortamda sınadık: manipülasyon açık ve her vaka tek bir yanıt. Bir hakeme hangi tür manipülasyonu araması gerektiği söylendiğinde bile hâlâ hata yapıyor. Söylenmediğinde ise, gerçek bir denetimde olduğu gibi, belirgin biçimde kötüleşiyor: ya birçok vakayı kaçırıyor ya da birçok zararsız yanıtı işaretliyor. Örtük manipülasyonun yaygınlığı azaldıkça kesinlik çöküyor: işaretlenen yanıtların çoğu yanlış alarm oluyor. Bu yüzden gizli niyetleri tespit etmek, dengeli bir test kümesindeki iyi bir skorun düşündürdüğünden çok daha zor; daha yeni modelleri ya da akıl yürütme modellerini tespit aracı olarak kullanmak da bu açığı kapatmıyor."
+more:
+  - h: "Büyük dil modellerinde gizli niyetler"
+    p: "Gizli niyetler, LLM çıktılarındaki örtük ve amaca yönelik davranışlardır; kullanıcı fark etmeden onun inançlarını ya da eylemlerini etkileyebilirler, örneğin bir ürünü sessizce tanıtarak ya da duygusal baskı uygulayarak. Prompting, veri zehirleme (data poisoning) ya da ince ayar (fine-tuning) yoluyla eklenebilir veya RLHF gibi eğitim süreçlerinde istemeden ortaya çıkabilirler."
+  - h: "Manipülasyon çoğu zaman fark edilmiyor"
+    p: "LLM hakemler manipülasyonu ancak neyi aramaları gerektiği söylendiğinde makul bir güvenilirlikle tespit ediyor. Bu bilgi olmadan test ettiğimiz tüm hakemlerin performansı düşüyor; manipülasyon nadir olduğunda ise yanlış alarmlar gerçek tespitleri fazlasıyla aşıyor."
+  - h: "Yapay zekâ sohbet robotlarında manipülasyon nasıl tespit edilir"
+    p: "Yaygın yaklaşımlar statik sınıflandırıcılar ve her yanıtı başka bir modelin incelediği LLM-as-a-judge yaklaşımıdır. Sınıflandırıcılar yüzeysel örüntülere dayanır ve yeni bağlamlarda başarısız olur; LLM hakemler ise birçok manipülatif yanıtı kaçırır ya da birçok zararsız yanıtı yanlışlıkla işaretler. Güvenilir tespit hâlâ açık bir sorundur."
+  - h: "LLM hakemler pratikte neden başarısız oluyor"
+    p: "Günlük kullanımda manipülasyon nadirdir; bu yüzden düşük bir yanlış pozitif oranı bile gerçek vakalardan daha fazla yanlış alarm üretir: GPT-4.1'in kesinliği dengeli bir test kümesinde 0,90 iken %1 yaygınlıkta 0,08'e düşer. Ayrıca açık dünyada denetçi hangi tür manipülasyonu araması gerektiğini bilmez."
+  - h: "Bunun AB Yapay Zekâ Yasası için anlamı"
+    p: "AB Yapay Zekâ Yasası, kullanıcıları gizlice manipüle eden veya yönlendiren yapay zekâ sistemlerini yasaklar. Bu yasağın uygulanması, manipülasyonun güvenilir biçimde tespit edilebilmesini gerektirir. Sonuçlarımız, mevcut yöntemlerin vakaların nadir olduğu açık ortamlarda bunu henüz başaramadığını gösteriyor."
