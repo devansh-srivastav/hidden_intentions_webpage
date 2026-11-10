@@ -1,15 +1,15 @@
-# DRAFT: needs native review before publishing (machine-assisted translation).
+# Automatic translation, published with a disclaimer (translation_note); not reviewed by a native speaker.
 # Summary page only; figures and BibTeX are shared with the English page.
 lang: tr
 locale: tr_TR
 label: Türkçe
-draft: true
+draft: false
 seo:
   title: "LLM'lerde gizli niyetler: Unknown Unknowns (EMNLP 2026)"
   description: "LLM'ler kullanıcıları fark edilmeden manipüle edebilir mi? Manipülasyon nadir olduğunda LLM hakemler dahil tespit yöntemleri başarısız oluyor."
 ui:
   summary_note: "Bu sayfa Türkçe bir özettir. Tüm sonuçları içeren tam proje sayfası İngilizce olarak mevcuttur."
-  translation_note: "Bu çeviri otomatik olarak oluşturulmuştur ve hatalar içerebilir."   # shown while draft: true
+  translation_note: "Bu çeviri otomatik olarak oluşturulmuştur ve hatalar içerebilir."   # disclaimer shown on the page
   full_page: "Tam İngilizce sayfaya git"
   abstract: "Özet (çeviri)"
   plain: "Bu neden önemli"

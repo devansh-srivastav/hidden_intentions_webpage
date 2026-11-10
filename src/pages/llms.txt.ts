@@ -1,6 +1,6 @@
 // llms.txt: the full English page as Markdown, for AI assistants. Built from the same content
 // files as the page, so it never drifts from it.
-import { paper, authors, translations, published, SITE, arxivUrl, venueLine, apaCitation, bibtex, doi } from '../lib/data';
+import { paper, authors, translations, SITE, arxivUrl, venueLine, apaCitation, bibtex, doi } from '../lib/data';
 
 const pct = (v: number) => `${Math.round(v * 100)}%`;
 const paras = (ps: string[]) => ps.join('\n\n');
@@ -105,7 +105,7 @@ ${paper.acknowledgements}
 
 ## Other languages
 
-Short summaries of this page${translations.some((t) => !published(t)) ? ' (automatic translations, not yet reviewed)' : ''}:
+Short summaries of this page (automatic translations, which may contain errors):
 
 ${translations.map((t) => `- [${t.label}](${SITE}/${t.lang}/)`).join('\n')}
 `;

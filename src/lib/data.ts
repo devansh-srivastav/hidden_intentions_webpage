@@ -106,7 +106,7 @@ export const languages = [
   { lang: 'en', hreflang: 'en', label: 'English', path: '/' },
   ...translations.filter(published).map((t) => ({ lang: t.lang, hreflang: t.hreflang || t.lang, label: t.label, dir: t.dir || 'ltr', path: `/${t.lang}/` })),
 ];
-// The language menu lists every built summary, drafts included (drafts stay out of hreflang and the sitemap).
+// The language menu lists every built summary, including any still marked draft.
 export const menuLanguages = [
   languages[0],
   ...translations.map((t) => ({ lang: t.lang, hreflang: t.hreflang || t.lang, label: t.label, dir: t.dir || 'ltr', path: `/${t.lang}/` })),

@@ -1,15 +1,15 @@
-# DRAFT: needs native review before publishing (machine-assisted translation).
+# Automatic translation, published with a disclaimer (translation_note); not reviewed by a native speaker.
 # Summary page only; figures and BibTeX are shared with the English page.
 lang: ja
 locale: ja_JP
 label: 日本語
-draft: true
+draft: false
 seo:
   title: "大規模言語モデル（LLM）の隠れた意図は検出できるか？ EMNLP 2026"
   description: "大規模言語モデル（LLM）は気づかれずにユーザーを操作できるのか。操作がまれな状況では、LLMを判定者に用いる手法を含め、検出が機能しないことを示します。"
 ui:
   summary_note: "このページは日本語の要約です。すべての結果を含む完全なプロジェクトページは英語で提供されています。"
-  translation_note: "この翻訳は自動で作成されたもので、誤りを含む可能性があります。"   # shown while draft: true
+  translation_note: "この翻訳は自動で作成されたもので、誤りを含む可能性があります。"   # disclaimer shown on the page
   full_page: "英語の完全版ページへ"
   abstract: "概要（翻訳）"
   plain: "なぜ重要なのか"

@@ -1,15 +1,15 @@
-# DRAFT: needs native review before publishing (machine-assisted translation).
+# Automatic translation, published with a disclaimer (translation_note); not reviewed by a native speaker.
 # Summary page only; figures and BibTeX are shared with the English page.
 lang: ko
 locale: ko_KR
 label: 한국어
-draft: true
+draft: false
 seo:
   title: "대규모 언어 모델(LLM)의 숨은 의도는 탐지될 수 있을까? EMNLP 2026"
   description: "대규모 언어 모델(LLM)이 들키지 않고 사용자를 조작할 수 있을까요? 조작이 드물 때 LLM 심판(LLM-as-a-judge)을 포함한 탐지 방법이 실패함을 보입니다."
 ui:
   summary_note: "이 페이지는 한국어 요약본입니다. 모든 결과가 담긴 전체 프로젝트 페이지는 영어로 제공됩니다."
-  translation_note: "이 번역은 자동으로 생성되었으며 오류가 있을 수 있습니다."   # shown while draft: true
+  translation_note: "이 번역은 자동으로 생성되었으며 오류가 있을 수 있습니다."   # disclaimer shown on the page
   full_page: "영어 전체 페이지 보기"
   abstract: "초록 (번역)"
   plain: "왜 중요한가"

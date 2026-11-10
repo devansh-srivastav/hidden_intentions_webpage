@@ -3,8 +3,6 @@
 
 site:
   url: https://hiddenintentionsinllms.org      # canonical origin, no trailing slash
-  # Search Console verification code, e.g. "abc123". Leave empty to omit the tag.
-  google_site_verification: ""
 
 title: "Unknown Unknowns: Do Hidden Intentions in LLMs Evade Detection?"
 # arXiv v1 title, for people who search or cite it. Used only in JSON-LD alternativeHeadline.

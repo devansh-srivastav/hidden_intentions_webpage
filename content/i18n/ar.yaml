@@ -1,16 +1,16 @@
-# DRAFT: needs native review before publishing (machine-assisted translation).
+# Automatic translation, published with a disclaimer (translation_note); not reviewed by a native speaker.
 # Summary page only; figures and BibTeX are shared with the English page.
 lang: ar
 locale: ar_AR
 label: العربية
 dir: rtl
-draft: true
+draft: false
 seo:
   title: "النوايا الخفية في النماذج اللغوية الكبيرة (LLM) – EMNLP 2026"
   description: "هل يمكن للنماذج اللغوية الكبيرة (LLM) التلاعب بالمستخدمين دون أن تُكتشف؟ نبيّن أن أساليب الكشف، بما فيها LLM كحَكَم، تفشل عندما يكون التلاعب نادرًا."
 ui:
   summary_note: "هذه الصفحة ملخص باللغة العربية. صفحة المشروع الكاملة بجميع النتائج متاحة باللغة الإنجليزية."
-  translation_note: "تُرجمت هذه الصفحة آليًا وقد تحتوي على أخطاء."   # shown while draft: true
+  translation_note: "تُرجمت هذه الصفحة آليًا وقد تحتوي على أخطاء."   # disclaimer shown on the page
   full_page: "الانتقال إلى الصفحة الإنجليزية الكاملة"
   abstract: "الملخص (ترجمة)"
   plain: "لماذا يهمّ هذا"

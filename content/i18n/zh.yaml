@@ -1,16 +1,16 @@
-# DRAFT: needs native review before publishing (machine-assisted translation).
+# Automatic translation, published with a disclaimer (translation_note); not reviewed by a native speaker.
 # Summary page only; figures and BibTeX are shared with the English page.
 lang: zh
 hreflang: zh-Hans
 locale: zh_CN
 label: 中文
-draft: true
+draft: false
 seo:
   title: "大语言模型 (LLM) 中的隐藏意图能否被检测？EMNLP 2026"
   description: "大语言模型 (LLM) 能否在不被察觉的情况下操纵用户？我们发现，包括 LLM-as-a-judge 在内的检测方法在操纵行为罕见时会失效。"
 ui:
   summary_note: "本页为中文摘要。包含全部结果的完整项目页面为英文。"
-  translation_note: "本译文为自动翻译，可能存在错误。"   # shown while draft: true
+  translation_note: "本译文为自动翻译，可能存在错误。"   # disclaimer shown on the page
   full_page: "查看完整英文页面"
   abstract: "摘要（译文）"
   plain: "为何重要"

@@ -1,15 +1,15 @@
-# DRAFT: needs native review before publishing (machine-assisted translation).
+# Automatic translation, published with a disclaimer (translation_note); not reviewed by a native speaker.
 # Summary page only; figures and BibTeX are shared with the English page.
 lang: hi
 locale: hi_IN
 label: हिन्दी
-draft: true
+draft: false
 seo:
   title: "LLM में छिपे इरादे: क्या वे पकड़ में आते हैं? (EMNLP 2026)"
   description: "क्या बड़े भाषा मॉडल (LLM) बिना पकड़े गए उपयोगकर्ताओं को प्रभावित कर सकते हैं? दुर्लभ हेरफेर होने पर LLM जज समेत पहचान के तरीके विफल हो जाते हैं।"
 ui:
   summary_note: "यह पेज हिन्दी में सारांश है। सभी परिणामों के साथ पूरा प्रोजेक्ट पेज अंग्रेज़ी में उपलब्ध है।"
-  translation_note: "यह अनुवाद स्वचालित रूप से तैयार किया गया है और इसमें गलतियाँ हो सकती हैं।"   # shown while draft: true
+  translation_note: "यह अनुवाद स्वचालित रूप से तैयार किया गया है और इसमें गलतियाँ हो सकती हैं।"   # disclaimer shown on the page
   full_page: "पूरा अंग्रेज़ी पेज देखें"
   abstract: "सार (अनुवाद)"
   plain: "यह क्यों मायने रखता है"

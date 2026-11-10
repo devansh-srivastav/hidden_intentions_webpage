@@ -1,15 +1,15 @@
-# DRAFT: needs native review before publishing (machine-assisted translation).
+# Automatic translation, published with a disclaimer (translation_note); not reviewed by a native speaker.
 # Summary page only; figures and BibTeX are shared with the English page.
 lang: es
 locale: es_ES
 label: Español
-draft: true
+draft: false
 seo:
   title: "Intenciones ocultas en LLMs: Unknown Unknowns (EMNLP 2026)"
   description: "¿Pueden los LLMs manipular a sus usuarios sin ser detectados? La detección, incluso con LLMs como jueces, falla cuando la manipulación es rara."
 ui:
   summary_note: "Esta página es un resumen en español. La página completa del proyecto, con todos los resultados, está disponible en inglés."
-  translation_note: "Esta traducción se generó automáticamente y puede contener errores."   # shown while draft: true
+  translation_note: "Esta traducción se generó automáticamente y puede contener errores."   # disclaimer shown on the page
   full_page: "Ver la página completa en inglés"
   abstract: "Resumen (traducción)"
   plain: "Por qué es importante"
